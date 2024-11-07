@@ -8,8 +8,9 @@ const getMonth = () => document.getElementById('month-title').textContent;
 document.body.addEventListener(CONSTANTS.EVENTS.CLICK, (event) => {
     const isValidDay = event.target.classList.contains('day');
     const isOffDay = event.target.classList.contains('day-off');
+    const isDisabled = event.target.classList.contains('disabled');
 
-    if (isValidDay && !isOffDay) {
+    if (isValidDay && !isOffDay && !isDisabled) {
         modalBackdrop.classList.remove(CONSTANTS.CLASSES.D_NONE);
         const day = event.target.textContent;
         modalContent.innerHTML = `${day} ${getMonth()}`;
