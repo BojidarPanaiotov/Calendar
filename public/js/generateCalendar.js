@@ -30,6 +30,7 @@ function generateCalendar(year, month) {
         const emptyCell = document.createElement(CONSTANTS.ELEMENTS.DIV);
         emptyCell.classList.add('day');
         emptyCell.classList.add('day-off');
+        emptyCell.classList.add('disabled');
         calendarGrid.appendChild(emptyCell);
     }
 
