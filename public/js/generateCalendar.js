@@ -1,3 +1,5 @@
+import CONSTANTS from './constants.js';
+
 const currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 
@@ -10,7 +12,7 @@ function generateCalendar(year, month) {
     const firstDay = new Date(year, month, 1).getDay();
     const lastDay = new Date(year, month + 1, 0).getDate();
 
-    const calendarGrid = document.createElement('div');
+    const calendarGrid = document.createElement(CONSTANTS.ELEMENTS.DIV);
     calendarGrid.classList.add('calendar-grid');
 
     const monthTitle = monthNames[month];
@@ -18,21 +20,21 @@ function generateCalendar(year, month) {
 
     const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     weekdays.forEach(day => {
-        const dayHeader = document.createElement('div');
+        const dayHeader = document.createElement(CONSTANTS.ELEMENTS.DIV);
         dayHeader.classList.add('day-header');
         dayHeader.textContent = day;
         calendarGrid.appendChild(dayHeader);
     });
 
     for (let i = 0; i < firstDay; i++) {
-        const emptyCell = document.createElement('div');
+        const emptyCell = document.createElement(CONSTANTS.ELEMENTS.DIV);
         emptyCell.classList.add('day');
         emptyCell.classList.add('day-off');
         calendarGrid.appendChild(emptyCell);
     }
 
     for (let day = 1; day <= lastDay; day++) {
-        const dayCell = document.createElement('div');
+        const dayCell = document.createElement(CONSTANTS.ELEMENTS.DIV);
         dayCell.classList.add('day');
         dayCell.textContent = day;
         calendarGrid.appendChild(dayCell);
@@ -49,7 +51,7 @@ function generateCalendar(year, month) {
     }, 500);
 }
 
-document.getElementById('prev-month').addEventListener('click', () => {
+document.getElementById('prev-month').addEventListener(CONSTANTS.EVENTS.CLICK, () => {
     if (currentMonth === 0) {
         currentMonth = 11;
         currentYear--;
@@ -59,7 +61,7 @@ document.getElementById('prev-month').addEventListener('click', () => {
     generateCalendar(currentYear, currentMonth);
 });
 
-document.getElementById('next-month').addEventListener('click', () => {
+document.getElementById('next-month').addEventListener(CONSTANTS.EVENTS.CLICK, () => {
     if (currentMonth === 11) {
         currentMonth = 0;
         currentYear++;
