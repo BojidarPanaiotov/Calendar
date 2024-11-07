@@ -5,3 +5,7 @@
 .d-flex {
     display: flex !important;
 }
+
+.invisible {
+    opacity: 0;
+}

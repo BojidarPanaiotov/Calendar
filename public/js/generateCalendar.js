@@ -48,6 +48,7 @@ function generateCalendar(year, month) {
         calendarContainer.appendChild(calendarGrid);
         calendarContainer.classList.remove('fade-out');
         calendarContainer.classList.add('fade-in');
+        document.querySelector('.calendar-container').classList.add('fade-in');
     }, 500);
 }
 
