@@ -1,23 +1,5 @@
-.calendar-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#calendar {
-    margin: 0 1rem;
-}
-
 .arrow-calendar-container {
     min-height: 740px;
-    display: flex;
-    align-items: center;
-}
-
-.navigation {
-    display: flex;
-    justify-content: center;
-    width: 100%;
 }
 
 .arrow {
@@ -73,6 +55,14 @@
     cursor: not-allowed;
 }
 
+.fade-in {
+    animation: fadeIn 0.1s ease-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.1s ease-out forwards;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -93,12 +83,4 @@
         opacity: 0;
         transform: translateX(-50px);
     }
-}
-
-.fade-in {
-    animation: fadeIn 0.1s ease-out forwards;
-}
-
-.fade-out {
-    animation: fadeOut 0.1s ease-out forwards;
 }

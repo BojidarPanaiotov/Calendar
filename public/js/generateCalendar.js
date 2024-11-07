@@ -38,6 +38,9 @@ function generateCalendar(year, month) {
         dayCell.classList.add('day');
         dayCell.textContent = day;
         calendarGrid.appendChild(dayCell);
+
+        dayCell.setAttribute('data-toggle', 'modal');
+        dayCell.setAttribute('data-target', '#simpleModal');
     }
 
     const calendarContainer = document.getElementById('calendar');
