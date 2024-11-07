@@ -19,17 +19,3 @@
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-#closeModalBtn {
-    padding: 10px 20px;
-    border: none;
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-#closeModalBtn:hover {
-    background: #0056b3;
-}
