@@ -54,7 +54,11 @@
     transition: background-color 0.3s;
 }
 
-.day:hover {
+.day-off {
+    background-color: #bfbdbd;
+}
+
+.day:not(.day-off):hover {
     background-color: #87CEEB;
 }
 
@@ -62,7 +66,6 @@
     font-weight: bold;
     font-size: 2rem;
     text-align: center;
-    background-color: #f2f2f2;
 }
 
 .day.disabled {

@@ -26,6 +26,8 @@ function generateCalendar(year, month) {
 
     for (let i = 0; i < firstDay; i++) {
         const emptyCell = document.createElement('div');
+        emptyCell.classList.add('day');
+        emptyCell.classList.add('day-off');
         calendarGrid.appendChild(emptyCell);
     }
 
