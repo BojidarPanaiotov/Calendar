@@ -36,6 +36,11 @@
     transition: background-color 0.3s;
 }
 
+.day:hover {
+    background-color: #007bff;
+    color: white;
+}
+
 .day-header {
     font-weight: bold;
     font-size: 2rem;
