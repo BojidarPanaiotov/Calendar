@@ -8,6 +8,7 @@ const port = 3000;
 const { engine } = require('express-handlebars');
 const usersFilePath = path.join(__dirname, "data", "users.json");
 const isAuthenticated = require('./middlewares/authentication')
+const customerHelpers = require('./helpers/customerHelpers')
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -49,14 +50,9 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const users = readUsers();
-
   const user = users.find((user) => user.username === username);
-  if (user && await bcrypt.compare(password, user.password)) {
-    req.session.userId = user.username;
-    res.redirect("/");
-  } else {
-    res.status(400).send("Invalid credentials");
-  }
+
+  customerHelpers.login(req, res, user, password);
 });
 
 app.post("/logout", (req, res) => {
