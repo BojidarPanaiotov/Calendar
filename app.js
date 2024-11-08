@@ -31,18 +31,19 @@ app.get('/', isAuthenticated, (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, repeatPassword } = req.body;
   const users = readUsers();
 
   if (users.some((user) => user.username === username)) {
     return res.status(400).send("User already exists");
+  } else if (password !== repeatPassword) {
+    return res.status(400).send("The passwords are different!");
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
   users.push({ username, password: hashedPassword });
   writeUsers(users);
-
-  res.render('/');
+  res.redirect("/");
 });
 
 app.post("/login", async (req, res) => {
@@ -74,7 +75,6 @@ app.listen(port, () => {
 
 function readUsers() {
   const data = fs.readFileSync(usersFilePath, "utf8");
-  console.log(data)
   return JSON.parse(data);
 }
 
