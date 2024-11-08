@@ -21,11 +21,19 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
   })
 );
+// Set global data for all views
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.userId || false;
+  next();
+});
+
 app.engine('hbs', engine({
   defaultLayout: 'index',
   extname: 'hbs'
 }));
+
 app.set('view engine', 'hbs');
+
 
 app.get('/', isAuthenticated, (req, res) => {
   res.render('calendar');
