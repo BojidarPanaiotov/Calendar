@@ -3,5 +3,5 @@ module.exports = function isAuthenticated(req, res, next) {
         return next();
     }
 
-    res.render('partials/loginForm');
+    res.render('partials/loginRegisterForm');
 }
