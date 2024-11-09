@@ -62,3 +62,10 @@ $('#next-month').on(CONSTANTS.EVENTS.CLICK, () => {
 });
 
 generateCalendar(currentYear, currentMonth);
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $(this).html($('#sidebar').hasClass('active') ? '&#9664;' : '&#9654;');
+    });
+});
