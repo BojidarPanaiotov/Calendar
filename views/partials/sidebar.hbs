@@ -90,3 +90,11 @@
         </ul>
     </nav>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $(this).html($('#sidebar').hasClass('active') ? '&#9664;' : '&#9654;');
+        });
+    });
+</script>
