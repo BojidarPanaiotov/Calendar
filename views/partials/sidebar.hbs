@@ -1,0 +1,100 @@
+<style>
+    #sidebar {
+        min-width: 250px;
+        max-width: 250px;
+        background: #343a40;
+        color: #fff;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        height: 100vh;
+        transition: all 0.3s;
+        padding: 1rem;
+        z-index: 9999;
+    }
+
+    #sidebar.active {
+        left: 0;
+    }
+
+    #sidebar .sidebar-header {
+        font-size: 1.5rem;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    #sidebar ul.components {
+        padding: 0;
+    }
+
+    #sidebar ul li {
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+
+    #sidebar ul li a {
+        color: #adb5bd;
+        text-decoration: none;
+        display: block;
+    }
+
+    #sidebar ul li a:hover {
+        color: #f8f9fa;
+        background: #495057;
+    }
+
+    #sidebar .toggle-btn {
+        position: absolute;
+        top: 10px;
+        right: -45px;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    #sidebar.active .toggle-btn {
+        right: -45px;
+    }
+
+    #content {
+        width: 100%;
+        transition: all 0.3s;
+    }
+
+    #content.active {
+        margin-left: 250px;
+    }
+</style>
+<div class="wrapper">
+    <nav id="sidebar">
+        <button type="button" class="toggle-btn" id="sidebarCollapse">
+            &#9654;
+        </button>
+        <div class="sidebar-header">
+            Sidebar Title
+        </div>
+        <ul class="list-unstyled components">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            {{#if isAuthenticated }}
+            {{> logoutButton}}
+            {{/if}}
+        </ul>
+    </nav>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $(this).html($('#sidebar').hasClass('active') ? '&#9664;' : '&#9654;');
+        });
+    });
+</script>

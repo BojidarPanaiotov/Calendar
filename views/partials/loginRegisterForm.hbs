@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="form-toggle text-center mb-3 d-flex justify-content-center w-50 mx-auto">
+        <button id="loginButton" class="active font-weight-bold border-top-0 border-right-0 border-left-0 w-100"
+            onclick="switchForm('login')">Login</button>
+        <button id="registerButton" class="font-weight-bold border-top-0 border-right-0 border-left-0 w-100"
+            onclick="switchForm('register')">Register</button>
+    </div>
+
+    <div id="loginForm" class="form-container active">
+        <h2 class="text-center mb-4">Login</h2>
+        <form action="/login" method="POST" class="w-50 mx-auto">
+            <div class="mb-3">
+                <label for="login-username" class="form-label">Username</label>
+                <input type="text" name="username" id="login-username" class="form-control"
+                    placeholder="Enter your username" required />
+            </div>
+            <div class="mb-3">
+                <label for="login-password" class="form-label">Password</label>
+                <input type="password" name="password" id="login-password" class="form-control"
+                    placeholder="Enter your password" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+    </div>
+
+    <div id="registerForm" class="form-container">
+        <h2 class="text-center mb-4">Register</h2>
+        <form action="/register" method="POST" class="w-50 mx-auto">
+            <div class="mb-3">
+                <label for="register-username" class="form-label">Username</label>
+                <input type="text" name="username" id="register-username" class="form-control"
+                    placeholder="Enter your username" required />
+            </div>
+            <div class="mb-3">
+                <label for="register-password" class="form-label">Password</label>
+                <input type="password" name="password" id="register-password" class="form-control"
+                    placeholder="Enter your password" required />
+            </div>
+            <div class="mb-3">
+                <label for="register-repeat-password" class="form-label">
+                    Repeat Password
+                </label>
+                <input type="password" name="repeatPassword" id="repeatPassword" class="form-control"
+                    placeholder="Repeat your password" required />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function switchForm(form) {
+        $('#loginButton, #registerButton').removeClass('active');
+        $('#' + form + 'Button').addClass('active');
+
+        $('.form-container').removeClass('active');
+        $('#' + form + 'Form').addClass('active');
+    }
+</script>
