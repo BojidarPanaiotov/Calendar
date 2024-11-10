@@ -29,7 +29,7 @@ function generateCalendar(year, month) {
 
         $dayCell.attr({
             'data-toggle': 'modal',
-            'data-target': '#simpleModal'
+            'data-target': '#event-slot-modal'
         });
     }
 
@@ -59,6 +59,40 @@ $('#next-month').on(CONSTANTS.EVENTS.CLICK, () => {
         currentMonth++;
     }
     generateCalendar(currentYear, currentMonth);
+});
+
+$('#event-slot-modal').on('show.bs.modal', function (event) {
+    const $modal = $(this);
+    const day = $(event.relatedTarget).text();
+    const monthAndYear = $('.js-month-year').text().split(' ');
+    const month = monthAndYear[0];
+    const year = monthAndYear[1];
+
+    $modal.data('day', day);
+    $modal.data('month', month);
+    $modal.data('year', year);
+});
+
+function getDay($button) {
+    const $modal = $button.closest('#event-slot-modal');
+    const day = $modal.data('day');
+    const $day = $('.day:visible').filter(function () {
+        return $(this).text().trim() === day;
+    });
+
+    return $day;
+}
+
+$('.js-disable-button').on('click', function () {
+    const $button = $(this);
+    const $day = getDay($button);
+    $day.addClass('disabled');
+});
+
+$('.js-enable-button').on('click', function () {
+    const $button = $(this);
+    const $day = getDay($button);
+    $day.removeClass('disabled');
 });
 
 generateCalendar(currentYear, currentMonth);
