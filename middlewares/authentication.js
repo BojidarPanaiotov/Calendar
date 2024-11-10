@@ -1,5 +1,5 @@
 module.exports = function isAuthenticated(req, res, next) {
-    if (req.session.userId) {
+    if (req.session.user) {
         return next();
     }
 

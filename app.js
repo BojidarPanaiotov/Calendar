@@ -23,17 +23,23 @@ app.use(
 );
 // Set global data for all views
 app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.session.userId || false;
+  res.locals.isAuthenticated = req.session.user || false;
+  req.session.user ? res.locals.user = req.session.user : res.locals.user = null;
+
   next();
 });
 
 app.engine('hbs', engine({
   defaultLayout: 'index',
-  extname: 'hbs'
+  extname: 'hbs',
+  helpers: {
+    isEqualHelper: function (value1, value2, options) {
+      return (value1 === value2) ? options.fn(this) : options.inverse(this);
+    }
+  }
 }));
 
 app.set('view engine', 'hbs');
-
 
 app.get('/', isAuthenticated, (req, res) => {
   res.render('calendar');

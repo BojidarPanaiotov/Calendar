@@ -4,7 +4,8 @@ module.exports = {
         const bcrypt = require("bcryptjs");
 
         if (user && await bcrypt.compare(password, user.password)) {
-            req.session.userId = user.username;
+            req.session.user = user;
+
             res.redirect("/");
         } else {
             res.status(400).send("Invalid credentials");
