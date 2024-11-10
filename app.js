@@ -79,6 +79,10 @@ app.post("/logout", (req, res) => {
   });
 });
 
+app.get("/api/getUserDates", (req, res) => {
+  res.json(req.session.user.dates);
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

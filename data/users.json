@@ -2,7 +2,21 @@
   {
     "username": "admin",
     "password": "$2a$10$pR78y8JzsVXGKri.KtMh7O0Q5iVbzqTN6BG.krKyCG4jhRW0yCiiW",
-    "role": "admin"
+    "role": "admin",
+    "dates": [
+      {
+        "day": 1,
+        "month": 10,
+        "year": 2024,
+        "action": "disabled"
+      },
+      {
+        "day": 19,
+        "month": 10,
+        "year": 2024,
+        "action": "disabled"
+      }
+    ]
   },
   {
     "username": "aa",

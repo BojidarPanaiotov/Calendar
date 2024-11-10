@@ -3,7 +3,7 @@ import CONSTANTS from './constants.js';
 const currentYear = new Date().getFullYear();
 let currentMonth = new Date().getMonth();
 
-function generateCalendar(year, month) {
+function generateCalendar(year, month, userEvents) {
     const firstDay = new Date(year, month, 1).getDay();
     const lastDay = new Date(year, month + 1, 0).getDate();
 
@@ -25,12 +25,22 @@ function generateCalendar(year, month) {
 
     for (let day = 1; day <= lastDay; day++) {
         const $dayCell = $('<div>', { class: 'day', text: day });
-        $calendarGrid.append($dayCell);
+
+        if (userEvents) {
+            $.each(userEvents, function(index, event) {
+                if (day === event.day && month === event.month && year === event.year) {
+                    $dayCell.addClass(event.action);
+
+                    return;
+                }
+            });
+        }
 
         $dayCell.attr({
             'data-toggle': 'modal',
             'data-target': '#event-slot-modal'
         });
+        $calendarGrid.append($dayCell);
     }
 
     const $calendarContainer = $('#calendar');
@@ -95,11 +105,20 @@ $('.js-enable-button').on('click', function () {
     $day.removeClass('disabled');
 });
 
-generateCalendar(currentYear, currentMonth);
 
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar, #content').toggleClass('active');
         $(this).html($('#sidebar').hasClass('active') ? '&#9664;' : '&#9654;');
     });
+});
+
+$.ajax({
+    url: '/api/getUserDates',
+    method: 'GET',
+    success: function (response) {
+        const events = response;
+
+        generateCalendar(currentYear, currentMonth, events);
+    }
 });
